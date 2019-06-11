@@ -34,11 +34,14 @@ if __name__ == '__main__':
     print('Now price:', price)
     while True:
         time.sleep(conf.interval)
-        newprice = api.get_last_ticker(symbol='eosusdt')['tick']['data'][0]['price']
-        if newprice > price:
-            if (newprice - price) / price > conf.diff_precent:
-                send_dingtalk_msg('Price increase to ' + newprice, conf.robot_id)
-        else:
-            if (price - newprice) / price > conf.diff_precent:
-                send_dingtalk_msg('Price fall to ' + conf.diff_precent, conf.robot_id)
-        price = newprice
+        try:
+            newprice = api.get_last_ticker(symbol='eosusdt')['tick']['data'][0]['price']
+            if newprice > price:
+                if (newprice - price) / price > conf.diff_precent:
+                    send_dingtalk_msg('Price increase to ' + newprice, conf.robot_id)
+            else:
+                if (price - newprice) / price > conf.diff_precent:
+                    send_dingtalk_msg('Price fall to ' + conf.diff_precent, conf.robot_id)
+            price = newprice
+        except Exception as err:
+            print('fail to get last price, exception:', err)
