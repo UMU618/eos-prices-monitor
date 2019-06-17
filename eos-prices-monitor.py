@@ -98,10 +98,10 @@ if __name__ == '__main__':
             new_btc_price = api.get_last_ticker(symbol='btcusdt')['tick']['data'][0]['price']
             if new_btc_price > btc_price:
                 if (new_btc_price - btc_price) / btc_price >= conf.diff_precent:
-                    send_dingtalk_msg('Price increase to ' + str(new_btc_price), conf.robot_id)
+                    send_dingtalk_msg('BTC price increase to ' + str(new_btc_price), conf.robot_id)
             else:
                 if (btc_price - new_btc_price) / btc_price >= conf.diff_precent:
-                    send_dingtalk_msg('Price fall to ' + str(conf.diff_precent), conf.robot_id)
+                    send_dingtalk_msg('BTC price fall to ' + str(new_btc_price), conf.robot_id)
             btc_price = new_btc_price
         except Exception as err:
             print('fail to get last BTC price, exception:', err)
@@ -110,10 +110,10 @@ if __name__ == '__main__':
             new_eos_price = api.get_last_ticker(symbol='eosusdt')['tick']['data'][0]['price']
             if new_eos_price > eos_price:
                 if (new_eos_price - eos_price) / eos_price >= conf.diff_precent:
-                    send_dingtalk_msg('Price increase to ' + str(new_eos_price), conf.robot_id)
+                    send_dingtalk_msg('EOS price increase to ' + str(new_eos_price), conf.robot_id)
             else:
                 if (eos_price - new_eos_price) / eos_price >= conf.diff_precent:
-                    send_dingtalk_msg('Price fall to ' + str(conf.diff_precent), conf.robot_id)
+                    send_dingtalk_msg('EOS price fall to ' + str(new_eos_price), conf.robot_id)
             eos_price = new_eos_price
         except Exception as err:
             print('fail to get last EOS price, exception:', err)
