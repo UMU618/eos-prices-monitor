@@ -1,0 +1,4 @@
+robot_id = 'df6308d74738e16e7398c11073ff4d3177cb6f8e7cc61d0f4eaef697daed61d5'
+interval = 15 * 60
+diff_precent = 0.005
+last_24h_precent = 0.03
